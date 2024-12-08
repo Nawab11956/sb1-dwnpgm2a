@@ -1,0 +1,26 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Nawab Voice Rooms">
+        <ActionItem tap="{{ onLogout }}" 
+                   ios.position="right" 
+                   android.position="actionBar">
+            <Label text="Logout" class="text-purple-600" />
+        </ActionItem>
+    </ActionBar>
+
+    <GridLayout rows="*, auto">
+        <ListView row="0" items="{{ rooms }}" itemTap="{{ onRoomTap }}" class="list-group">
+            <ListView.itemTemplate>
+                <StackLayout class="p-4 border-b border-gray-200">
+                    <Label text="{{ name }}" class="text-lg font-semibold"/>
+                    <Label text="{{ description }}" class="text-gray-600"/>
+                    <Label text="{{ participants.length }} participants" class="text-sm text-purple-600"/>
+                </StackLayout>
+            </ListView.itemTemplate>
+        </ListView>
+
+        <Button row="1" text="+" tap="{{ onCreateRoom }}" 
+                class="bg-purple-600 text-white text-2xl rounded-full w-16 h-16"
+                horizontalAlignment="right" verticalAlignment="bottom" 
+                margin="16"/>
+    </GridLayout>
+</Page>

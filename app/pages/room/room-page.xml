@@ -1,0 +1,32 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="{{ room.name }}">
+        <ActionItem tap="{{ onLeaveRoom }}" 
+                   ios.position="left" 
+                   android.position="actionBar">
+            <Label text="Leave" class="text-red-600" />
+        </ActionItem>
+    </ActionBar>
+
+    <GridLayout rows="*, auto">
+        <ScrollView row="0">
+            <StackLayout class="p-4">
+                <Label text="Participants" class="text-xl font-bold mb-4"/>
+                <ListView items="{{ participants }}" class="list-group">
+                    <ListView.itemTemplate>
+                        <GridLayout columns="auto, *, auto" class="p-4 border-b border-gray-200">
+                            <Label col="0" text="{{ username }}" class="text-lg"/>
+                            <Label col="1" text="{{ isSpeaking ? '🗣️' : '' }}" class="ml-2"/>
+                            <Label col="2" text="{{ isMuted ? '🔇' : '🔊' }}" />
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+
+        <StackLayout row="1" class="p-4 bg-gray-100">
+            <Button text="{{ isMuted ? 'Unmute' : 'Mute' }}" 
+                    tap="{{ onToggleMute }}"
+                    class="{{ isMuted ? 'bg-red-600' : 'bg-green-600' }} text-white font-bold py-4 rounded-lg"/>
+        </StackLayout>
+    </GridLayout>
+</Page>
